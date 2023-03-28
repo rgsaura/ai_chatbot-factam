@@ -170,7 +170,7 @@ export default function Home() {
           <div className="header">
           <div className="logo center">
                 <a href="">
-                  <img src="/bot-image.png" loading="lazy" width="200px" />
+                <Image src="/bot-image.png" loading="lazy" width={200} height={200} />
                 </a>
               </div>
               <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center text-white">FACTAM IA</h1>
@@ -347,7 +347,7 @@ export default function Home() {
         <footer className="m-auto p-1">
         
                 <a href="https://www.wikiwand.com/es/Medicina_paliativa">
-                  <img src="/factam.png" loading="lazy" width="100px" />
+                <Image src="/factam.png" loading="lazy" width={100} height={100} />
                 </a>
               
         </footer>
