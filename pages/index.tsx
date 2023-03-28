@@ -167,8 +167,8 @@ export default function Home() {
           {/* <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
             FACTAM AI
           </h1> */}
-          <div class="header">
-          <div class="logo center">
+          <div className="header">
+          <div className="logo center">
                 <a href="">
                   <img src="/bot-image.png" loading="lazy" width="200px" />
                 </a>
@@ -176,13 +176,13 @@ export default function Home() {
               <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center text-white">FACTAM IA</h1>
             </div>
 
-            <div class="flex justify-center">
-  <div class="main mx-auto max-w-screen-md w-full">
-  <p class="text-center text-gray-300">
-  Demostración centrada en <a href="https://www.wikiwand.com/es/Fibrosis_pulmonar_idiop%C3%A1tica" class="underline">Fibrosis Pulmonar Idiopática</a> alimentada con artículos científicos.
+            <div className="flex justify-center">
+  <div className="main mx-auto max-w-screen-md w-full">
+  <p className="text-center text-gray-300">
+  Demostración centrada en <a href="https://www.wikiwand.com/es/Fibrosis_pulmonar_idiop%C3%A1tica" className="underline">Fibrosis Pulmonar Idiopática</a> alimentada con artículos científicos.
 </p>
 
-    <p class="text-center text-gray-600">
+    <p className="text-center text-gray-600">
           *Actualizada hasta el 2014*
     </p>
   </div>
