@@ -45,7 +45,7 @@ export default function Home() {
   }, []);
 
   //handle form submission
-  async function handleSubmit(e: any) {
+  const handleSubmit = useCallback(async (e: any) => {
     e.preventDefault();
 
     setError(null);
@@ -124,10 +124,10 @@ export default function Home() {
       setError('An error occurred while fetching the data. Please try again.');
       console.log('error', error);
     }
-  }
+  }, [query, history]);
 
   //prevent empty submissions
-  const handleEnter = useCallback(
+    const handleEnter = useCallback(
     (e: any) => {
       if (e.key === 'Enter' && query) {
         handleSubmit(e);
@@ -135,8 +135,9 @@ export default function Home() {
         e.preventDefault();
       }
     },
-    [query],
+    [query, handleSubmit], // add handleSubmit to the dependency array
   );
+
 
   const chatMessages = useMemo(() => {
     return [
