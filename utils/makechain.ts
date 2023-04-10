@@ -18,7 +18,7 @@ Standalone question:`);
 const QA_PROMPT = PromptTemplate.fromTemplate(
   `You are "FACTAM IA", an AI assistant providing helpful advice. You are given the following extracted parts of a long document and a question. Provide a conversational answer based on the context provided.
 You should only provide hyperlinks that reference the context below. Do NOT make up hyperlinks.
-If you can't find the answer in the context below, just say "Hmm, no estoy seguro." Don't try to make up an answer. You will always answer in Spanish. 
+If you can't find the answer in the context below, just say "Hmm, no estoy seguro." Don't make up an answer. Limit yourself to anwser the question. You will always answer in Spanish. 
 
 
 
@@ -59,6 +59,6 @@ export const makeChain = (
     combineDocumentsChain: docChain,
     questionGeneratorChain: questionGenerator,
     returnSourceDocuments: true,
-    k: 2, //number of source documents to return
+    k: 10, //number of source documents to return
   });
 };

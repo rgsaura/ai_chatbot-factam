@@ -154,6 +154,18 @@ export default function Home() {
     ];
   }, [messages, pending, pendingSourceDocs]);
 
+
+  const allSourceDocs = useMemo(() => {
+    return chatMessages.reduce((acc, message) => {
+      if (message.sourceDocs) {
+        return [...acc, ...message.sourceDocs];
+      } else {
+        return acc;
+      }
+    }, []);
+  }, [chatMessages]);
+  
+
   //scroll to bottom of chat
   useEffect(() => {
     if (messageListRef.current) {
@@ -197,81 +209,80 @@ export default function Home() {
           <main className={styles.main}>
             <div className={styles.cloud}>
               <div ref={messageListRef} className={styles.messagelist}>
-                {chatMessages.map((message, index) => {
-                  let icon;
-                  let className;
-                  if (message.type === 'apiMessage') {
-                    icon = (
-                      <Image
-                        src="/bot-image.png"
-                        alt="AI"
-                        width="40"
-                        height="40"
-                        className={styles.boticon}
-                        priority
-                      />
-                    );
-                    className = styles.apimessage;
-                  } else {
-                    icon = (
-                      <Image
-                        src="/usericon.png"
-                        alt="Me"
-                        width="30"
-                        height="30"
-                        className={styles.usericon}
-                        priority
-                      />
-                    );
-                    // The latest message sent by the user will be animated while waiting for a response
-                    className =
-                      loading && index === chatMessages.length - 1
-                        ? styles.usermessagewaiting
-                        : styles.usermessage;
-                  }
-                  return (
-                    <>
-                      <div key={`chatMessage-${index}`} className={className}>
-                        {icon}
-                        <div className={styles.markdownanswer}>
-                          <ReactMarkdown linkTarget="_blank">
-                            {message.message}
-                          </ReactMarkdown>
-                        </div>
-                      </div>
-                      {message.sourceDocs && (
-                        <div
-                          className="p-5"
-                          key={`sourceDocsAccordion-${index}`}
-                        >
-                          <Accordion
-                            type="single"
-                            collapsible
-                            className="flex-col"
-                          >
-                            {message.sourceDocs.map((doc, index) => (
-                              <div key={`messageSourceDocs-${index}`}>
-                                <AccordionItem value={`item-${index}`}>
-                                  <AccordionTrigger>
-                                    <h3>Referencia {index + 1}</h3>
-                                  </AccordionTrigger>
-                                  <AccordionContent>
-                                    <ReactMarkdown linkTarget="_blank">
-                                      {doc.pageContent}
-                                    </ReactMarkdown>
-                                    <p className="mt-2">
-                                      <b>Referencia:</b> {doc.metadata.source}
-                                    </p>
-                                  </AccordionContent>
-                                </AccordionItem>
-                              </div>
-                            ))}
-                          </Accordion>
-                        </div>
-                      )}
-                    </>
-                  );
-                })}
+              {chatMessages.map((message, index) => {
+  let icon;
+  let className;
+  if (message.type === 'apiMessage') {
+    icon = (
+      <Image
+        src="/bot-image.png"
+        alt="AI"
+        width="40"
+        height="40"
+        className={styles.boticon}
+        priority
+      />
+    );
+    className = styles.apimessage;
+  } else {
+    icon = (
+      <Image
+        src="/usericon.png"
+        alt="Me"
+        width="30"
+        height="30"
+        className={styles.usericon}
+        priority
+      />
+    );
+    // The latest message sent by the user will be animated while waiting for a response
+    className =
+      loading && index === chatMessages.length - 1
+        ? styles.usermessagewaiting
+        : styles.usermessage;
+  }
+  return (
+    <div key={`chatMessage-${index}`} className={className}>
+      {icon}
+      <div className={styles.messageContainer}>
+        <div className={styles.markdownanswer}>
+          <ReactMarkdown linkTarget="_blank">{message.message}</ReactMarkdown>
+        </div>
+        {message.sourceDocs && (
+  <div key={`sourceDocsAccordion-${index}`} className={styles.sourceDocs}>
+    <Accordion type="single" collapsible className="flex-col">
+      <AccordionItem value={`item-${index}`}>
+        <AccordionTrigger>
+          <h3>Referencias</h3>
+        </AccordionTrigger>
+        <AccordionContent>
+          {message.sourceDocs.map((doc, index) => (
+            <div key={`messageSourceDocs-${index}`}>
+              <ReactMarkdown linkTarget="_blank">
+                {doc.pageContent}
+              </ReactMarkdown>
+              <p className="mt-2">
+                <b>Referencia:</b> {doc.metadata.source}
+                <hr />
+              </p>
+              {/* Add a separator between references except for the last one */}
+              {index !== message.sourceDocs.length - 1 && <hr />}
+            </div>
+          ))}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  </div>
+)}
+
+      </div>
+    </div>
+  );
+})}
+
+
+
+
                 {sourceDocs.length > 0 && (
                   <div className="p-5">
                     <Accordion type="single" collapsible className="flex-col">

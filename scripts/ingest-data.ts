@@ -19,8 +19,8 @@ export const run = async () => {
 
     /* Split text into chunks */
     const textSplitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 200,
-      chunkOverlap: 100,
+      chunkSize: 1000,
+      chunkOverlap: 200,
     });
 
     const docs = await textSplitter.splitDocuments(rawDocs);
@@ -34,7 +34,7 @@ export const run = async () => {
     //embed the PDF documents
 
     /* Pinecone recommends a limit of 100 vectors per upsert request to avoid errors*/
-    const chunkSize = 50;
+    const chunkSize = 100;
     for (let i = 0; i < docs.length; i += chunkSize) {
       const chunk = docs.slice(i, i + chunkSize);
       console.log('chunk', i, chunk);
