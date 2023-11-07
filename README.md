@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 # GPT-4 & LangChain - Create a ChatGPT Chatbot for Your PDF Docs
 
-Use the new GPT-4 api to build a chatGPT chatbot for Large PDF docs (56 pages used in this example).
-
-Tech stack used includes LangChain, Pinecone, Typescript, Openai, and Next.js. LangChain is a framework that makes it easier to build scalable AI/LLM apps and chatbots. Pinecone is a vectorstore for storing embeddings and your PDF in text to later retrieve similar docs.
-
-[Tutorial video](https://www.youtube.com/watch?v=ih9PBGVVOO4)
-
-[Get in touch via twitter if you have questions](https://twitter.com/mayowaoshin)
-
-The visual guide of this repo and tutorial is in the `visual guide` folder.
+Use the new GPT-4 api to build a chatGPT chatbot for Large PDF docs.
 
 **If you run into errors, please review the troubleshooting section further down this page.**
 
@@ -89,5 +80,3 @@ If you're stuck after trying all these steps, delete `node_modules`, restart you
 
 Frontend of this repo is inspired by [langchain-chat-nextjs](https://github.com/zahidkhawaja/langchain-chat-nextjs)
 =======
-# factam-ai
->>>>>>> origin/main
