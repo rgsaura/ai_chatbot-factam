@@ -1,6 +1,6 @@
-# GPT-4 & LangChain - Create a ChatGPT Chatbot for Your PDF Docs
+Project that didn't come through unfourtunally, but I was able to build a functional chatbot using openai API.
 
-Use the new GPT-4 api to build a chatGPT chatbot for Large PDF docs.
+---
 
 **If you run into errors, please review the troubleshooting section further down this page.**
 
